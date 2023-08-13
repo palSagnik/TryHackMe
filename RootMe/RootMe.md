@@ -76,4 +76,5 @@ This also worked with a *.php5* extension.
 nc -lnvp 6969
 ```
 
+<img width="1267" alt="Screenshot1" src="https://github.com/palSagnik/TryHackMe/assets/112897062/5deac99e-76bf-487e-a109-ad679e35dac1">
 
