@@ -1,4 +1,7 @@
-****S****
+## Description
+A ctf for beginners, can you root me?
+
+## 1. Reconnaissance
 
 After deploying the machine in TryHackMe, the given IP was 10.10.192.170
 
@@ -50,3 +53,27 @@ Progress: 959 / 960 (99.90%)
 ````
 
 We find that this website has hidden directories like, /panel and /uploads. Upon visiting then we get that /panel is a file uploader and /uploads is used to open the uploaded file.
+
+
+## 2. Getting a Shell
+
+The idea behind file upload exploit is to upload a script file, more often a php file.
+But in most cases we find that, the uploader has some kind of restrictions to not directly upload .php files.
+
+Here the extensions to try were
+*.Php, .PHp, .php2, .php3, .php4, .php5, .pHp, .phtm, .phtml*
+
+The script for the reverse shell used was, from github of pentest-monkey
+[here](https://github.com/pentestmonkey/php-reverse-shell)
+
+Writing this in php tags and uploading it as file with *.phtml* extension.
+After the upload is shown as successful, go to /uploads and before clicking on the uploaded file, we open a terminal and start our listener. This is important because the above script tries to establish a connection with listener, in the form of socket hence the listener end of the socket must be open for a good connection.
+
+NOTE:
+This also worked with a *.php5* extension.
+
+```
+nc -lnvp 6969
+```
+
+
